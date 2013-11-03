@@ -1,0 +1,29 @@
+%h2 Register
+
+- if flash[:notice]
+  "Hihi"
+- if flash[:alert]
+  .alert.alert-danger.alert-dismissable
+    %button{type: "button", class: "close", data: { dismiss: "alert"}}
+      &times;
+    = flash[:alert]
+= form_for(@user, url: user_registration_path) do |f|
+  .form-group
+    = f.email_field :email, :autofocus => true, class: "form-control", placeholder: "Email"
+  .form-group
+    = f.text_field :first_name, class: "form-control", placeholder: "First Name"
+  .form-group
+    = f.text_field :last_name, class: "form-control", placeholder: "Last Name"
+  .form-group
+    = f.select :gender, options_for_select([['Male', 'male'], ['Female', 'female']]), {}, { class: "selectpicker", data: { style: "btn-info"} }
+  .form-group
+    = f.password_field :password, class: "form-control", placeholder: "Password"
+  .form-group
+    = f.password_field :password_confirmation, class: "form-control", placeholder: "Password Confirmation"
+  .form-group
+    = f.hidden_field :provider
+  .form-group
+    = f.hidden_field :uid
+  .form-group
+    = f.submit "Sign up", class: "btn btn-primary"		
+    = link_to "Sign up with Facebook", user_omniauth_authorize_path(:facebook), class: "btn btn-primary"
