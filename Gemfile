@@ -20,6 +20,8 @@ group :test do
 	gem 'rspec-rails'
 	gem 'cucumber-rails', require: false
 	gem 'simplecov', :require => false
+	gem 'mocha'
+	gem 'shoulda-matchers'
 end
 
 group :staging, :production do

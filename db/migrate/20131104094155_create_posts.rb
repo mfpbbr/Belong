@@ -1,10 +1,10 @@
 class CreatePosts < ActiveRecord::Migration
   def change
     create_table :posts do |t|
-    	t.integer :group
+    	t.references :group
     	t.references :user
     	t.text :text
-    	t.attachment :picture
+    	t.references :picture
       t.timestamps
     end
 

@@ -23,10 +23,23 @@
 #  gender                 :string(255)
 #  created_at             :datetime
 #  updated_at             :datetime
+#  provider               :string(255)
+#  uid                    :string(255)
+#  picture_id             :integer
 #
 
 require 'spec_helper'
 
 describe User do
-  pending "add some examples to (or delete) #{__FILE__}"
+  before(:all) do
+  	@user = FactoryGirl.build(:user)
+  	@girl = FactoryGirl.build(:girl)
+  end
+
+  describe "with valid attributes" do
+  	it "should be valid" do
+  		@user.should be_valid
+  		@girl.should be_valid
+  	end
+  end
 end

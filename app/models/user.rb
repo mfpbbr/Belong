@@ -23,6 +23,9 @@
 #  gender                 :string(255)
 #  created_at             :datetime
 #  updated_at             :datetime
+#  provider               :string(255)
+#  uid                    :string(255)
+#  picture_id             :integer
 #
 
 class User < ActiveRecord::Base
@@ -34,6 +37,12 @@ class User < ActiveRecord::Base
   devise :omniauthable, :omniauth_providers => [:facebook]
 
   has_many :pictures, as: :imageable
+  has_many :group_subscriptions
+  has_many :groups, through: :group_subscriptions
+
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :gender, presence: true
   def self.find_for_facebook_auth(auth, signed_in_resource=nil)
   	user = User.find_by(provider: auth.provider, uid: auth.uid) || User.find_by(email: auth.info.email)
   	if user

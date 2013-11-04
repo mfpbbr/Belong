@@ -1,4 +1,5 @@
 require 'simplecov'
+require 'mocha/api'
 SimpleCov.start 'rails'
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
@@ -40,5 +41,7 @@ RSpec.configure do |config|
   # order dependency and want to debug it, you can fix the order by providing
   # the seed, which is printed after each run.
   #     --seed 1234
+  config.include Devise::TestHelpers, :type => :controller
+  config.extend PaperclipMacros
   config.order = "random"
 end

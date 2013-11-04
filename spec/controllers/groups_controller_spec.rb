@@ -29,10 +29,13 @@ describe GroupsController do
   # in order to pass any filters (e.g. authentication) defined in
   # GroupsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
-
+  before(:all) do
+    # @valid_group = 
+    # @invalid_group = FactoryGirl.build(:)
+  end
   describe "GET index" do
     it "assigns all groups as @groups" do
-      group = Group.create! valid_attributes
+      group = FactoryGirl.create(:group)
       get :index, {}, valid_session
       assigns(:groups).should eq([group])
     end
@@ -40,7 +43,7 @@ describe GroupsController do
 
   describe "GET show" do
     it "assigns the requested group as @group" do
-      group = Group.create! valid_attributes
+      group = FactoryGirl.create(:group)
       get :show, {:id => group.to_param}, valid_session
       assigns(:group).should eq(group)
     end
@@ -55,7 +58,7 @@ describe GroupsController do
 
   describe "GET edit" do
     it "assigns the requested group as @group" do
-      group = Group.create! valid_attributes
+      group = FactoryGirl.create(:group)
       get :edit, {:id => group.to_param}, valid_session
       assigns(:group).should eq(group)
     end
@@ -111,13 +114,13 @@ describe GroupsController do
       end
 
       it "assigns the requested group as @group" do
-        group = Group.create! valid_attributes
+        group = FactoryGirl.create(:group)
         put :update, {:id => group.to_param, :group => valid_attributes}, valid_session
         assigns(:group).should eq(group)
       end
 
       it "redirects to the group" do
-        group = Group.create! valid_attributes
+        group = FactoryGirl.create(:group)
         put :update, {:id => group.to_param, :group => valid_attributes}, valid_session
         response.should redirect_to(group)
       end
