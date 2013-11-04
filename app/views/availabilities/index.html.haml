@@ -1,0 +1,17 @@
+%h1 Listing availabilities
+
+%table
+  %tr
+    %th
+    %th
+    %th
+
+  - @availabilities.each do |availability|
+    %tr
+      %td= link_to 'Show', availability
+      %td= link_to 'Edit', edit_availability_path(availability)
+      %td= link_to 'Destroy', availability, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Availability', new_availability_path

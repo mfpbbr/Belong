@@ -1,4 +1,16 @@
 Groupandme::Application.routes.draw do
+  resources :availabilities
+
+  resources :comments
+
+  resources :pictures
+
+  resources :albums
+
+  resources :posts
+
+  resources :groups
+
   devise_for :users, controllers: { registrations: "users/registrations", sessions: "users/sessions", omniauth_callbacks: "users/omniauth"}
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
