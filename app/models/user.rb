@@ -33,6 +33,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   devise :omniauthable, :omniauth_providers => [:facebook]
 
+  has_many :pictures, as: :imageable
   def self.find_for_facebook_auth(auth, signed_in_resource=nil)
   	user = User.find_by(provider: auth.provider, uid: auth.uid) || User.find_by(email: auth.info.email)
   	if user
